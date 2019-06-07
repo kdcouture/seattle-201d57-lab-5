@@ -9,9 +9,6 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sum(a, b) { //eslint-disable-line
-  console.log('a : ' + a);
-  console.log('b : ' + b);
-
   var total = a + b;
   var message = 'The sum of ' + a + ' and ' + b + ' is ' + total + '.';
 
@@ -59,8 +56,10 @@ Test this function by hand in the console to get it working, and when you think 
 function sumAndMultiply(a, b, c) { //eslint-disable-line
   var addStr = a + ' and ' + b + ' and ' + c + ' sum to ';
   var multStr = 'The product of ' + a + ' and ' + b + ' and ' + c + ' is ';
-  var sumTotal = a + b + c;
-  var product = a * b * c;
+  var sumTotal = sum(a,b)[0];
+  sumTotal = sum(sumTotal, c)[0];
+  var product = multiply(a,b)[0];
+  product = multiply(product,c)[0];
   addStr += sumTotal + '.';
   multStr += product + '.';
   return [sumTotal, product, addStr, multStr];
@@ -88,7 +87,7 @@ var testArray = [2, 3, 4]; //eslint-disable-line
 function sumArray(sumArr) { //eslint-disable-line
   var total = 0;
   for(var i = 0; i < sumArr.length; i++) {
-    total += sumArr[i];
+    total = sum(total,sumArr[i])[0];
   }
   var strBuild = sumArr + ' was passed in as an array of numbers, and ' + total + ' is their sum.';
   return [total, strBuild];
@@ -120,7 +119,7 @@ function multiplyArray(multArr) { //eslint-disable-line
     total = 0;
   // Iterate throguh array
   for(var i = 0; i < multArr.length; i++) {
-    total *= multArr[i];
+    total = multiply(total, multArr[i])[0];
   }
   strBuild += total + '.';
   return [total, strBuild];
